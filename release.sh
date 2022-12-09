@@ -6,7 +6,6 @@ else
   domain=$REACT_APP_API_DOMAIN
 fi
 
-
 yarn build
 
 rsync -avr build/* root@$domain:/home/ubuntu/site/ai

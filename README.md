@@ -3,9 +3,18 @@
 Multi-user h5 version, 3rd party ChatGPT web page. Uses OpenAPI official API.
 
 Back-end repository: <https://github.com/yi-ge/chatgpt-api>
+
+旨在降低中国大陆用户体验ChatGPT的成本。
+
 后端改个bug马上传上来
 
 文档还很乱，后面完善，先给个star吧
+
+## Feature
+
+- 部署后可实现在中国大陆访问进行ChatGPT体验
+- 支持多账号、多用户
+- 足够简单，易于修改（前端代码200行，后端代码130行）
 
 ## Preview
 

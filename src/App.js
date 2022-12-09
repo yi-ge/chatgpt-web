@@ -42,7 +42,7 @@ const initialMessages = [
   },
   {
     type: "notice",
-    content: { text: "目前系统只同时支持 1 个人进行测试" },
+    content: { text: "目前系统只同时支持 1 个人进行体验" },
   },
 ];
 
@@ -56,14 +56,14 @@ const defaultQuickReplies = [
 ];
 
 let isExecuted = false;
-function App() {
+function App () {
   const { messages, appendMsg, setTyping, deleteMsg } =
     useMessages(initialMessages);
   const [onlineUserNum, setOnlineUserNum] = useState(1);
   const [waitingUserNum, setWaitingUserNum] = useState(0);
   const [open, setOpen] = useState(false);
 
-  function handleModalConfirm(action) {
+  function handleModalConfirm (action) {
     if (action === 1) {
       toast.show("正在抢占体验名额")
       socket.emit('rush', true)
@@ -72,7 +72,7 @@ function App() {
     }
   }
 
-  function socketHandler() {
+  function socketHandler () {
     isExecuted = true
     if (!sessionStorage.getItem("token")) toast.show("正在抢占体验名额");
     setTimeout(() => {
@@ -104,7 +104,7 @@ function App() {
     document.querySelectorAll('pre code').forEach((el) => hljs.highlightElement(el)) // eslint-disable-line no-undef
   });
 
-  async function handleSend(type, val) {
+  async function handleSend (type, val) {
     if (type === "text" && val.trim()) {
       appendMsg({
         type: "text",
@@ -135,7 +135,7 @@ function App() {
     }
   }
 
-  function reSend() {
+  function reSend () {
     for (const m of messages) {
       if (m.position === "right") {
         handleSend("text", m.content);
@@ -146,7 +146,7 @@ function App() {
 
 
   // 根据消息类型来渲染
-  function renderMessageContent({ type, content, _id }) {
+  function renderMessageContent ({ type, content, _id }) {
     switch (type) {
       case "text":
         return <Bubble content={content.text} />;
@@ -178,7 +178,7 @@ function App() {
     }
   }
 
-  function handleQuickReplyClick(item) {
+  function handleQuickReplyClick (item) {
     setTyping(true);
     setTimeout(() => {
       appendMsg({

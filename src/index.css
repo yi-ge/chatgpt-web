@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  width: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.ChatFooter .Composer {
+  margin-bottom: 10px;
+}
+
+.left-info,
+.right-info {
+  padding: 2px 4px;
+  position: fixed;
+  top: 0;
+  background-color: rgb(202 202 202 / 50%);
+  ;
+  z-index: 100;
+  display: flex;
+  color: brown;
+}
+
+.left-info {
+  left: 0;
+}
+
+.right-info {
+  right: 0;
+}
+
+.btn-refresh {
+  float: right;
+  margin-right: -46px;
+  margin-top: -22px;
+  width: 25px;
+  height: 25px;
+  color: #b2a217;
+}

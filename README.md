@@ -3,7 +3,9 @@
 Multi-user h5 version, 3rd party ChatGPT web page. Uses OpenAPI official API.
 
 Back-end repository: <https://github.com/yi-ge/chatgpt-api>
+后端改个bug马上传上来
 
+文档还很乱，后面完善，先给个star吧
 ## Preview
 
 ![img](screenshot/preview0.jpg)

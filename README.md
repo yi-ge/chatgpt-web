@@ -8,9 +8,7 @@ Back-end repository: <https://github.com/yi-ge/chatgpt-api>
 文档还很乱，后面完善，先给个star吧
 ## Preview
 
-![img](screenshot/preview0.jpg)
-
-![img](screenshot/preview1.jpg)
+![screenshot](screenshot/preview.jpg)
 
 ## Disclaimers 免责声明
 

@@ -2,7 +2,7 @@
 
 Multi-user h5 version, 3rd party ChatGPT web page. Uses OpenAPI official API.
 
-Back-end repository: <https://github.com/yi-ge/chaggpt-api>
+Back-end repository: <https://github.com/yi-ge/chatgpt-api>
 
 ## Preview
 

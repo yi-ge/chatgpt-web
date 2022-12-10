@@ -8,11 +8,9 @@ import Chat, {
   Button,
   toast,
 } from "@chatui/core";
-import axios from "axios";
 import { io } from "socket.io-client";
 import { v4 as uuid } from 'uuid'
 
-const axiosInstance = axios.create();
 const converter = new showdown.Converter(); // eslint-disable-line no-undef
 
 let userUUID = localStorage.getItem("userUUID");
@@ -101,6 +99,22 @@ function App () {
         toast.success("成功抢到体验名额");
       })
 
+      socket.on("answer", (data) => {
+        if (data.code === 1) {
+          appendMsg({
+            type: "html",
+            content: { text: converter.makeHtml(data.result) },
+            user: { avatar: "/ai.png" },
+          });
+        } else {
+          appendMsg({
+            type: "error",
+            content: { text: "请求错误，请重试。" },
+            user: { avatar: "/system.png" },
+          });
+        }
+      })
+
       socket.emit('ready', true)
     }, 2000); // 避免用户频繁刷新
   }
@@ -121,24 +135,11 @@ function App () {
 
       setTyping(true);
 
-      try {
-        const { data } = await axiosInstance.get(
-          `//${process.env.REACT_APP_API_DOMAIN}/chatgpt?token=${sessionStorage.getItem("token")}&userUUID=${userUUID}&text=${val.trim()}`
-        );
-        if (data.code === 1) {
-          appendMsg({
-            type: "html",
-            content: { text: converter.makeHtml(data.result) },
-            user: { avatar: "/ai.png" },
-          });
-        }
-      } catch (err) {
-        appendMsg({
-          type: "error",
-          content: { text: "请求错误，请重试。" },
-          user: { avatar: "/system.png" },
-        });
-      }
+      socket.emit('chatgpt', {
+        token: sessionStorage.getItem("token"),
+        userUUID,
+        text: val.trim()
+      })
     }
   }
 

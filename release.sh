@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
 
-if [ 0"$REACT_APP_API_DOMAIN" = "0" ]; then
+if [ 0"$FRONT_END_SERVER_IP" = "0" ]; then
   read -p "Enter your Domain:" domain
 else
-  domain=$REACT_APP_API_DOMAIN
+  domain=$FRONT_END_SERVER_IP
+fi
+
+if [ 0"$FRONT_END_SERVER_PATH" = "0" ]; then
+  read -p "Enter your Front-end path:" domain
+else
+  frontEndPath=$FRONT_END_SERVER_PATH
 fi
 
 yarn build
 
-rsync -avr build/* root@$domain:/home/ubuntu/site/ai
+rsync -avr build/* root@$domain:$frontEndPath

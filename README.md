@@ -21,7 +21,7 @@ Back-end repository（后端代码仓库）: <https://github.com/yi-ge/chatgpt-a
 
 ## Preview
 
-![screenshot](screenshot/preview.jpg)
+![screenshot](screenshot/preview1.jpg)
 
 ## 开发
 

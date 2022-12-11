@@ -22,7 +22,7 @@ Back-end repository（后端代码仓库）: <https://github.com/yi-ge/chatgpt-a
 
 ## Preview
 
-![screenshot](screenshot/preview1.jpg)
+![screenshot](screenshot/preview2.jpg)
 
 ## 开发
 

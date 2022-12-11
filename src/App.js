@@ -64,8 +64,8 @@ let isExecuted = false;
 function App () {
   const { messages, appendMsg, setTyping, deleteMsg } =
     useMessages(initialMessages);
-  const [onlineUserNum, setOnlineUserNum] = useState(1);
-  const [waitingUserNum, setWaitingUserNum] = useState(0);
+  const [onlineUserNum, setOnlineUserNum] = useState(null);
+  const [waitingUserNum, setWaitingUserNum] = useState(null);
   const [open, setOpen] = useState(false);
 
   function handleModalConfirm (action) {
@@ -112,7 +112,7 @@ function App () {
         } else {
           appendMsg({
             type: "error",
-            content: { text: "请求错误，请重试。" },
+            content: { text: "错误：" + data.msg + "， 请重试。" },
             user: { avatar: "/system.png" },
           });
         }
@@ -149,7 +149,7 @@ function App () {
   function reSend () {
     for (const m of messages) {
       if (m.position === "right") {
-        handleSend("text", m.content);
+        handleSend("text", m.content?.text);
         break
       }
     }
@@ -216,8 +216,8 @@ function App () {
 
   return (
     <div style={{ width: "100%", height: "100%" }}>
-      <div className="left-info">{onlineUserNum} 人在线</div>
-      <div className="right-info">{waitingUserNum} 人等待</div>
+      <div className="left-info">{onlineUserNum !== null ? onlineUserNum : '-'} 人在线</div>
+      <div className="right-info">{waitingUserNum !== null ? waitingUserNum : '-'} 人等待</div>
       <Chat
         navbar={{ title: "ChatGPT 测试" }}
         messages={messages}
@@ -232,7 +232,7 @@ function App () {
         showClose={false}
         backdrop='static'
       >
-        <p style={{ paddingLeft: '15px' }}>⚠️ 由于ChatGPT系统限制，为确保上下文关联正确，只允许同时1个用户体验，系统采用抢单模式进入，下一个用户退出后将释放 1 一个体验名额，点击下方“体验”按钮抢占名额（拼手速），也可以使用您自己的账号。需要注意的是，如果您使用自己的OpenAI账号（支持账号密码或cookie，不支持第三方登录），服务器端将在您退出后销毁内存记录，不会将您的账号借给他人使用。</p>
+        <p style={{ paddingLeft: '15px' }}>⚠️ 由于ChatGPT系统限制，为确保上下文关联正确，只允许同时 1 个用户体验，系统采用抢单模式进入，下一个用户退出后将释放 1 一个体验名额，点击下方“体验”按钮抢占名额（拼手速），也可以使用您自己的账号。需要注意的是，如果您使用自己的OpenAI账号（支持账号密码或cookie，不支持第三方登录），服务器端将在您退出后销毁内存记录，不会将您的账号借给他人使用。</p>
         <p style={{ paddingLeft: '15px' }}>报告故障微信：molegeek</p>
         <p style={{ paddingLeft: '15px' }}>开源地址：<a href="https://github.com/yi-ge/chatgpt-web" target="_blank" rel="noreferrer">https://github.com/yi-ge/chatgpt-web</a></p>
         <p style={{ paddingLeft: '15px' }}>公益项目，请勿长时间占用体验名额！</p>

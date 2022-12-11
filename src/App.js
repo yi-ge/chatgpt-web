@@ -97,6 +97,9 @@ function App () {
         sessionStorage.setItem('token', data)
         setOpen(false);
         toast.success("成功抢到体验名额");
+        setTimeout(() => {
+          toast.show("请勿长时间占用体验名额，谢谢！");
+        }, 5 * 60 * 1000)
       })
 
       socket.on("answer", (data) => {

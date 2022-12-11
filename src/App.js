@@ -39,10 +39,6 @@ const initialMessages = [
     content: { text: "受限于光速，响应较慢属于正常现象" },
   },
   {
-    type: "notice",
-    content: { text: "目前系统只同时支持 1 个人进行体验" },
-  },
-  {
     type: "noticeWithURL",
     content: {
       text: "开源地址：https://github.com/yi-ge/chatgpt-web",
@@ -66,6 +62,7 @@ function App () {
     useMessages(initialMessages);
   const [onlineUserNum, setOnlineUserNum] = useState(null);
   const [waitingUserNum, setWaitingUserNum] = useState(null);
+  const [accountCount, setAccountCount] = useState(null);
   const [open, setOpen] = useState(false);
 
   function handleModalConfirm (action) {
@@ -85,6 +82,7 @@ function App () {
         console.log("online user num", data);
         setOnlineUserNum(data.onlineUserNum);
         setWaitingUserNum(data.waitingUserNum);
+        setAccountCount(data.accountCount);
       });
 
       socket.on("restricted", (data) => {
@@ -232,14 +230,14 @@ function App () {
         showClose={false}
         backdrop='static'
       >
-        <p style={{ paddingLeft: '15px' }}>⚠️ 由于ChatGPT系统限制，为确保上下文关联正确，只允许同时 1 个用户体验，系统采用抢单模式进入，下一个用户退出后将释放 1 一个体验名额，点击下方“体验”按钮抢占名额（拼手速），也可以使用您自己的账号。需要注意的是，如果您使用自己的OpenAI账号（支持账号密码或cookie，不支持第三方登录），服务器端将在您退出后销毁内存记录，不会将您的账号借给他人使用。</p>
+        <p style={{ paddingLeft: '15px' }}>⚠️ 由于ChatGPT系统限制，为确保上下文关联正确，只允许同时 {accountCount !== null ? accountCount : 'loading...'} 个用户体验，系统采用抢单模式进入，下一个用户退出后将释放 1 个体验名额，点击下方“体验”按钮抢占名额（拼手速），也可以使用您自己的账号。需要注意的是，如果您使用自己的OpenAI账号（支持账号密码或cookie，不支持第三方登录），服务器端将在您退出后销毁内存记录，不会将您的账号借给他人使用。</p>
         <p style={{ paddingLeft: '15px' }}>报告故障微信：molegeek</p>
         <p style={{ paddingLeft: '15px' }}>开源地址：<a href="https://github.com/yi-ge/chatgpt-web" target="_blank" rel="noreferrer">https://github.com/yi-ge/chatgpt-web</a></p>
         <p style={{ paddingLeft: '15px' }}>公益项目，请勿长时间占用体验名额！</p>
         <p style={{ paddingLeft: '15px', marginTop: '15px' }}>当前在线人数：{onlineUserNum} 人</p>
         <p style={{ paddingLeft: '15px', fontWeight: 600 }}>当前正在体验人数：{onlineUserNum - waitingUserNum} 人</p>
         <p style={{ paddingLeft: '15px' }}>当前等待体验人数：{waitingUserNum} 人</p>
-        <p style={{ paddingLeft: '15px' }}>目前版本支持同时体验人数：1 人</p>
+        <p style={{ paddingLeft: '15px' }}>目前版本支持同时体验人数：{accountCount !== null ? accountCount : 'loading...'} 人</p>
         <p style={{ textAlign: 'center' }}>
           <Button color="primary" onClick={handleModalConfirm.bind(this, 1)}>直接体验</Button>
           <Button style={{ marginLeft: '20px' }} onClick={handleModalConfirm.bind(this, 2)}>使用账号体验</Button>

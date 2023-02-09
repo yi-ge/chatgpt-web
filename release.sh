@@ -12,6 +12,6 @@ else
   frontEndPath=$FRONT_END_SERVER_PATH
 fi
 
-yarn build
+# yarn build
 
 rsync -avr build/* root@$domain:$frontEndPath

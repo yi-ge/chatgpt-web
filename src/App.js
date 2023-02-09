@@ -57,6 +57,8 @@ const defaultQuickReplies = [
 ];
 
 let isExecuted = false;
+
+alert('由于OpenAPI于(2022年12月12日)增加了Cloudflare防护，考虑合规性，此系统已被作者关停且不再更新。有体验需求的用户请访问OpenAI官网，敬请理解。')
 function App () {
   const { messages, appendMsg, setTyping, deleteMsg } =
     useMessages(initialMessages);

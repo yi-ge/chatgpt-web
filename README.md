@@ -4,7 +4,7 @@ Multi-user h5 version, 3rd party ChatGPT web page. Uses OpenAPI official web API
 
 第三方ChatGPT H5客户端，借助OpenAPI官方web的API实现。
 
-**在线体验地址：** <https://chat.wyr.me>
+**在线体验地址：** 【已下线】
 
 Back-end repository（后端代码仓库）: <https://github.com/yi-ge/chatgpt-api>
 
